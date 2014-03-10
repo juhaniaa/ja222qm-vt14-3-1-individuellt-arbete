@@ -53,6 +53,9 @@ namespace Ja222qmApp.Pages
             {
                 var id = int.Parse(e.CommandArgument.ToString());
                 Service.DeleteMember(id);
+
+                Response.RedirectToRoute("Members", null);
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception)
             {

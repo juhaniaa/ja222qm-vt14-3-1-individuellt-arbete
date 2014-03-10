@@ -57,6 +57,9 @@ namespace Ja222qmApp.Pages
                 if (ModelState.IsValid)
                 {
                     Service.SaveMember(member);
+
+                    Response.RedirectToRoute("MemberDetails", new { id = member.MemberId });
+                    Context.ApplicationInstance.CompleteRequest();
                 }
             }
             catch (Exception)

@@ -24,6 +24,8 @@ namespace Ja222qmApp.Pages
                 {
                     Service service = new Service();
                     service.SaveMember(member);
+                    Response.RedirectToRoute("Members", null);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
                 catch (Exception)
                 {
