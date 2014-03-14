@@ -10,15 +10,15 @@
 namespace Ja222qmApp.Pages.AreaPages {
     
     
-    public partial class ListAreas {
+    public partial class EditArea {
         
         /// <summary>
-        /// AreaListView control.
+        /// AreaFormView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView AreaListView;
+        protected global::System.Web.UI.WebControls.FormView AreaFormView;
     }
 }

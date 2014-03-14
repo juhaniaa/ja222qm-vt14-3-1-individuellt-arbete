@@ -46,9 +46,10 @@
             <div class="float-right">                
                 <nav>
                     <ul id="menu">
-                        <li><a runat="server" href="~/Pages/List.aspx">Medlemmar</a></li>
-                        <li><a runat="server" href="~/Pages/NewMember.aspx">Lägg till ny medlem</a></li>
-                        <li><a runat="server" href="~/Contact">Ansvarsområden</a></li>
+                        <li><a runat="server" href='<%$ RouteUrl:routename=Members %>'>Medlemmar</a></li>
+                        <li><a runat="server" href='<%$ RouteUrl:routename=NewMember %>'>Ny medlem</a></li>
+                        <li><a runat="server" href='<%$ RouteUrl:routename=Areas %>'>Ansvarsområden</a></li>
+                        <li><a runat="server" href='<%$ RouteUrl:routename=NewArea %>'>Nytt ansvarsområde</a></li>
                     </ul>
                 </nav>
             </div>

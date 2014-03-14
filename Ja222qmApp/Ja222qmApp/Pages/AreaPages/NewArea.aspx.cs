@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ja222qmApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,26 @@ namespace Ja222qmApp.Pages.AreaPages
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        public void AreaFormView_InsertItem(Area area)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Service service = new Service();
+                    service.SaveArea(area);
+                    Response.RedirectToRoute("Areas", null);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "Fel inträffade då kunden skulle läggas till.");
+                }
+
+
+            }
         }
     }
 }

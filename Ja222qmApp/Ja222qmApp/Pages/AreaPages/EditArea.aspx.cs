@@ -7,13 +7,13 @@ using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Ja222qmApp.Pages
+namespace Ja222qmApp.Pages.AreaPages
 {
-    public partial class EditMember : System.Web.UI.Page
+    public partial class EditArea : System.Web.UI.Page
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
+
         }
 
         private Service _service;
@@ -25,47 +25,46 @@ namespace Ja222qmApp.Pages
 
         // The id parameter should match the DataKeyNames value set on the control
         // or be decorated with a value provider attribute, e.g. [QueryString]int id
-        public Member MemberFormView_GetItem([RouteData]int id)
+        public Area AreaFormView_GetItem([RouteData]int id)
         {
             try
             {
-                return Service.GetMember(id);
+                return Service.GetArea(id);
             }
             catch (Exception)
             {
-                ModelState.AddModelError(String.Empty, "Ett fel inträffade då medlemmen skulle hämtas för redigering");
+                ModelState.AddModelError(String.Empty, "Ett fel inträffade då ansvarsområdet skulle hämtas för redigering");
                 return null;
             }
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
-        public void MemberFormView_UpdateItem(int memberId)
+        public void AreaFormView_UpdateItem(int areaId)
         {
-
             try
             {
-                var member = Service.GetMember(memberId);
-                
-                if (member == null)
+                var area = Service.GetArea(areaId);
+
+                if (area == null)
                 {
-                    // The member wasn't found
-                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", memberId));
+                    // The area wasn't found
+                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", areaId));
                     return;
                 }
 
-                TryUpdateModel(member);
+                TryUpdateModel(area);
                 if (ModelState.IsValid)
                 {
-                    Service.SaveMember(member);
+                    Service.SaveArea(area);
 
-                    Response.RedirectToRoute("MemberDetails", new { id = member.MemberId });
+                    Response.RedirectToRoute("AreaDetails", new { id = area.AreaId });
                     Context.ApplicationInstance.CompleteRequest();
                 }
             }
             catch (Exception)
             {
 
-                ModelState.AddModelError("", String.Format("Ett fel inträffade då medlemmen skulle uppdateras"));
+                ModelState.AddModelError("", String.Format("Ett fel inträffade då ansvarsområdet skulle uppdateras"));
             }
         }
     }

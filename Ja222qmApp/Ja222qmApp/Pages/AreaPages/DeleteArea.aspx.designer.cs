@@ -7,27 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ja222qmApp.Pages {
+namespace Ja222qmApp.Pages.AreaPages {
     
     
-    public partial class CheckMember {
+    public partial class DeleteArea {
         
         /// <summary>
-        /// MemberFormView control.
+        /// AreaName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView MemberFormView;
+        protected global::System.Web.UI.WebControls.Literal AreaName;
         
         /// <summary>
-        /// AreaListView control.
+        /// DeleteAreaButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView AreaListView;
+        protected global::System.Web.UI.WebControls.LinkButton DeleteAreaButton;
+        
+        /// <summary>
+        /// CancelHyperLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink CancelHyperLink;
     }
 }

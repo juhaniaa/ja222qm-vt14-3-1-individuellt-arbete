@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Ja222qmApp.Pages
+namespace Ja222qmApp.Pages.AreaPages
 {
-    public partial class DeleteMember : System.Web.UI.Page
+    public partial class DeleteArea : System.Web.UI.Page
     {
         private Service _service;
 
@@ -24,43 +24,43 @@ namespace Ja222qmApp.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CancelHyperLink.NavigateUrl = GetRouteUrl("MemberDetails", new { id = Id });
+            CancelHyperLink.NavigateUrl = GetRouteUrl("AreaDetails", new { id = Id });
 
             if (!IsPostBack)
             {
                 try
                 {
-                    var member = Service.GetMember(Id);
-                    if (member != null)
+                    var area = Service.GetArea(Id);
+                    if (area != null)
                     {
-                        MemberName.Text = member.Name;
+                        AreaName.Text = area.AreaName;
                         return;
                     }
                 }
                 catch (Exception)
                 {
-                    
+
                     throw;
                 }
             }
 
-        }      
-     
+        }
 
-        protected void DeleteMemberButton_Command(object sender, CommandEventArgs e)
+
+        protected void DeleteAreaButton_Command(object sender, CommandEventArgs e)
         {
             try
             {
                 var id = int.Parse(e.CommandArgument.ToString());
-                Service.DeleteMember(id);
+                Service.DeleteArea(id);
 
-                Response.RedirectToRoute("Members", null);
+                Response.RedirectToRoute("Areas", null);
                 Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception)
             {
 
-                ModelState.AddModelError(String.Empty, "Ett fel inträffade då medlemmen skulle raderas");
+                ModelState.AddModelError(String.Empty, "Ett fel inträffade då ansvarsområdet skulle raderas");
             }
         }
     }

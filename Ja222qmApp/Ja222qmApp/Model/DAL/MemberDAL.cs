@@ -135,7 +135,6 @@ namespace Ja222qmApp.Model.DAL
             }
         }
 
-
         public void InsertMember(Member member)
         {
             using (SqlConnection conn = CreateConnection())
@@ -164,6 +163,7 @@ namespace Ja222qmApp.Model.DAL
                 }
             }
         }
+
         public void UpdateMember(Member member)
         {
             using (SqlConnection conn = CreateConnection())

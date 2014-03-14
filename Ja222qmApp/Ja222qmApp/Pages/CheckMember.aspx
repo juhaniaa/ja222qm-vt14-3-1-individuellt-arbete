@@ -52,5 +52,33 @@
         </ItemTemplate>
 
     </asp:FormView>
+    <hr />
+
+    <%-- Lista på den specifika medlemmens ansvarsområden --%>
+
+    <label for="Areas">Ansvarsområden</label>
+    <asp:ListView ID="AreaListView" runat="server" 
+        ItemType="Ja222qmApp.Model.Helper" SelectMethod="AreaListView_GetData"
+        DataKeyNames="HelperId">
+        
+        <LayoutTemplate>
+            
+            <asp:PlaceHolder ID="itemPlaceholder" runat="server"/>
+        </LayoutTemplate>
+        <ItemTemplate>
+            <dl>
+                <dt>
+                    <%#: Item.HelperAreaName %>
+                    <asp:LinkButton ID="DeleteAreaButton" runat="server" Text="Ta bort ansvar"
+                         OnCommand="DeleteAreaButton_Command" CommandArgument='<%# Item.HelperId %>'></asp:LinkButton>
+                </dt>           
+            </dl>
+    
+        </ItemTemplate>         
+    </asp:ListView>
+
+
+    
+
 
 </asp:Content>

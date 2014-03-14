@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Radera kund" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DeleteMember.aspx.cs" Inherits="Ja222qmApp.Pages.DeleteMember" %>
+﻿<%@ Page Title="Radera ansvarsområde" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DeleteArea.aspx.cs" Inherits="Ja222qmApp.Pages.AreaPages.DeleteArea" %>
 
 <asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
     <section class="featured">
@@ -12,11 +12,10 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
-    <p>Är du helt säker på att du vill radera medlemmen
-        <asp:Literal runat="server" ID="MemberName" ViewStateMode="Enabled"></asp:Literal>?</p>
-
-    <asp:LinkButton ID="DeleteMemberButton" runat="server" Text="Ja, radera medlemmen" 
-        OnCommand="DeleteMemberButton_Command" CommandArgument='<%$ RouteValue:id %>'></asp:LinkButton>
+    <p>Är du helt säker på att du vill radera ansvarsområdet
+        <asp:Literal runat="server" ID="AreaName" ViewStateMode="Enabled"></asp:Literal>?</p>
+    <asp:LinkButton ID="DeleteAreaButton" runat="server" Text="Ja, radera ansvarsområdet" 
+        OnCommand="DeleteAreaButton_Command" CommandArgument='<%$ RouteValue:id %>'></asp:LinkButton>
     <asp:HyperLink runat="server" ID="CancelHyperLink" Text="Avbryt" />
 
 </asp:Content>
