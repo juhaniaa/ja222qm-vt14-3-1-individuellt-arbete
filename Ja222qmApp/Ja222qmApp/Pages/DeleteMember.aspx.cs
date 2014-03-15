@@ -24,12 +24,14 @@ namespace Ja222qmApp.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // hämtar ut länk till sidan med medlems-detaljer från Route
             CancelHyperLink.NavigateUrl = GetRouteUrl("MemberDetails", new { id = Id });
 
             if (!IsPostBack)
             {
                 try
                 {
+                    // hämta ut medlemsinfo
                     var member = Service.GetMember(Id);
                     if (member != null)
                     {
@@ -46,14 +48,16 @@ namespace Ja222qmApp.Pages
 
         }      
      
-
+        // då användaren bekräftar radering
         protected void DeleteMemberButton_Command(object sender, CommandEventArgs e)
         {
             try
             {
+                // radera kund och
                 var id = int.Parse(e.CommandArgument.ToString());
                 Service.DeleteMember(id);
 
+                // ...skicka kunden tillbaka till listan med medlemmar
                 Response.RedirectToRoute("Members", null);
                 Context.ApplicationInstance.CompleteRequest();
             }

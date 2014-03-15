@@ -24,12 +24,14 @@ namespace Ja222qmApp.Pages.AreaPages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // länk tillbaka till användarens detalj-sida
             CancelHyperLink.NavigateUrl = GetRouteUrl("AreaDetails", new { id = Id });
 
             if (!IsPostBack)
             {
                 try
                 {
+                    // hämtar ut ansvarsområdet som skall raderas
                     var area = Service.GetArea(Id);
                     if (area != null)
                     {
@@ -46,7 +48,7 @@ namespace Ja222qmApp.Pages.AreaPages
 
         }
 
-
+        // då användaren väljer att radera ansvarsområdet
         protected void DeleteAreaButton_Command(object sender, CommandEventArgs e)
         {
             try
@@ -54,6 +56,7 @@ namespace Ja222qmApp.Pages.AreaPages
                 var id = int.Parse(e.CommandArgument.ToString());
                 Service.DeleteArea(id);
 
+                // returnerar användaren till sidan med ansvarsområden
                 Response.RedirectToRoute("Areas", null);
                 Context.ApplicationInstance.CompleteRequest();
             }

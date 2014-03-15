@@ -13,6 +13,9 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
     <asp:ValidationSummary runat="server" />
+
+    <%-- Visar den specifika medlemmens info --%>
+
     <asp:FormView ID="MemberFormView" runat="server" ItemType="Ja222qmApp.Model.Member"
          SelectMethod="MemberFormView_GetItem" RenderOuterTable="false">
         <ItemTemplate>
@@ -57,19 +60,19 @@
     <%-- Lista på den specifika medlemmens ansvarsområden --%>
 
     <label for="Areas">Ansvarsområden</label>
+
     <asp:ListView ID="AreaListView" runat="server" 
         ItemType="Ja222qmApp.Model.Helper" SelectMethod="AreaListView_GetData"
-        DataKeyNames="HelperId">
-        
-        <LayoutTemplate>
-            
+        DataKeyNames="HelperId">        
+        <LayoutTemplate>            
             <asp:PlaceHolder ID="itemPlaceholder" runat="server"/>
         </LayoutTemplate>
         <ItemTemplate>
+
             <dl>
                 <dt>
                     <%#: Item.HelperAreaName %>
-                    <asp:LinkButton ID="DeleteAreaButton" runat="server" Text="Ta bort ansvar"
+                    <asp:LinkButton ID="DeleteAreaButton" runat="server" Text="Ta bort"
                          OnCommand="DeleteAreaButton_Command" CommandArgument='<%# Item.HelperId %>'></asp:LinkButton>
                 </dt>           
             </dl>
@@ -77,8 +80,17 @@
         </ItemTemplate>         
     </asp:ListView>
 
-
+    <%-- Dropdown lista för att lägga till nytt ansvars till den specifika medlemmen --%>
     
-
+    <asp:DropDownList ID="AreaDropDownList" runat="server" 
+        SelectMethod="AreaDropDownList_GetData" AppendDataBoundItems="true"
+        DataTextField="AreaName"
+        DataValueField="AreaId">
+        <asp:ListItem Selected="True" Text="Nytt ansvar..." value=0></asp:ListItem>
+    </asp:DropDownList>    
+        
+    <%-- Knapp för att bekräfta --%>
+    <asp:LinkButton ID="AddAreaButton" runat="server" Text="Lägg till"
+                         OnCommand="AddAreaButton_Command" CommandArgument='<%$ RouteValue:id %>'></asp:LinkButton>
 
 </asp:Content>

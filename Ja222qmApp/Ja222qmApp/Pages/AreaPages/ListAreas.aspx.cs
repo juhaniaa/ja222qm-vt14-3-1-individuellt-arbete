@@ -22,13 +22,7 @@ namespace Ja222qmApp.Pages.AreaPages
 
         }
 
-
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
+        // hämtar ut info om ansvarsområden
         public IEnumerable<Area> AreaListView_GetData()
         {
             return Service.GetAreas();

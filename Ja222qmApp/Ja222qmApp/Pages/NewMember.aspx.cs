@@ -22,6 +22,8 @@ namespace Ja222qmApp.Pages
             {
                 try
                 {
+                    // då validering är ok sparas medlemmen
+                    // och användaren skickas till sidan med lista på alla medlemmar
                     Service service = new Service();
                     service.SaveMember(member);
                     Response.RedirectToRoute("Members", null);

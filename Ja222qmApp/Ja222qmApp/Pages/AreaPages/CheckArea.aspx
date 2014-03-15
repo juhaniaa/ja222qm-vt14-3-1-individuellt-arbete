@@ -12,6 +12,8 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
+    <%-- Skriver ut det specifika ansvarsområdet och ger möjlighet att redigera och ta bort det --%>
+
     <asp:ValidationSummary runat="server" />
     <asp:FormView ID="AreaFormView" runat="server" ItemType="Ja222qmApp.Model.Area" 
         SelectMethod="AreaFormView_GetItem"
@@ -32,5 +34,26 @@
         </ItemTemplate>
 
     </asp:FormView>
+    <br />
+    <hr />
+
+    <%-- Lista alla medlemmar med detta ansvarsområde --%>
+
+    <asp:ListView ID="AreaMemberListView" runat="server" ItemType="Ja222qmApp.Model.Member" 
+        SelectMethod="AreaMemberListView_GetData" DataKeyNames="MemberId">
+        <LayoutTemplate>
+            <label for="medlemmar">Medlemmar som ingår i ansvarsområdet:</label>
+            <asp:PlaceHolder ID="itemPlaceholder" runat="server"/>
+        </LayoutTemplate>
+        <ItemTemplate>
+            <dl>
+                <dt>
+                   <asp:HyperLink runat="server" NavigateUrl='<%# GetRouteUrl("MemberDetails", new { id = Item.MemberId })  %>' Text='<%# Item.Name %>' /> 
+                </dt>
+            </dl>
+    
+        </ItemTemplate>        
+    </asp:ListView>
+
 
 </asp:Content>

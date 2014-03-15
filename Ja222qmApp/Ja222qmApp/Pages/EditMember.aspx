@@ -13,6 +13,8 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <asp:ValidationSummary runat="server" />
 
+    <%-- redigeringsmöjligheter för specifik medlem --%>
+
     <asp:FormView ID="MemberFormView" runat="server"
         ItemType="Ja222qmApp.Model.Member" 
         DataKeyNames="MemberId"

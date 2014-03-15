@@ -16,64 +16,34 @@ namespace Ja222qmApp.Pages
         private Service Service
         {
             get { return _service ?? (_service = new Service()); }
-        }
-
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
+        }        
+    
         public Member MemberFormView_GetItem([RouteData]int id)
         {
             try
             {
+                // hämtar ut info om medlemmen
                 Service service = new Service();
                 return service.GetMember(id);
             }
             catch (Exception)
             {
-
                 ModelState.AddModelError(String.Empty, "Ett fel inträffade då medlemmen skulle hämtas");
                 return null;
             }
         }
 
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
-        public IEnumerable<Helper> AreaView_GetItem([RouteData]int id)
-        {
-            try
-            {
-                Service service = new Service();
-                return service.GetHelperAreas(id);
-            }
-            catch (Exception)
-            {
 
-                ModelState.AddModelError(String.Empty, "Ett fel inträffade då medlemmens ansvarsområden skulle hämtas ut");
-                return null;
-            }
-        }
-
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
         public IEnumerable<Helper> AreaListView_GetData([RouteData]int id)
         {
             try
             {
+                // hämtar ut den specifika medlemmens ansvarsområden
                 Service service = new Service();
                 return service.GetHelperAreas(id);
             }
             catch (Exception)
             {
-
                 ModelState.AddModelError(String.Empty, "Ett fel inträffade då medlemmens ansvarsområden skulle hämtas ut");
                 return null;
             }
@@ -83,6 +53,7 @@ namespace Ja222qmApp.Pages
         {
             try
             {
+                // medhjälpar id skickas med för att radera ansvarsområdet från medlemmen
                 var id = int.Parse(e.CommandArgument.ToString());
                 int memberId = Service.DeleteHelperArea(id);
 
@@ -91,9 +62,32 @@ namespace Ja222qmApp.Pages
             }
             catch (Exception)
             {
-                
-                throw;
+                ModelState.AddModelError(String.Empty, "Ett fel inträffade då medlemmens ansvarsområden skulle raderas");
             }
         }
+
+        public IEnumerable<Area> AreaDropDownList_GetData()
+        {
+            return Service.GetAreas();
+        }
+
+        protected void AddAreaButton_Command(object sender, CommandEventArgs e)
+        {
+            // om inget är valt
+            if(int.Parse(AreaDropDownList.SelectedValue) == 0){
+
+                // gör ingenting
+                return;
+            }
+
+            // medlems id och ansvars id skickas för att lägga till ansvar
+            var id = int.Parse(e.CommandArgument.ToString());
+            int areaId = int.Parse(AreaDropDownList.SelectedValue);
+            Service.AddAreaToMember(id, areaId);
+
+            Response.RedirectToRoute("MemberDetails", new { id = id });
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
     }
 }

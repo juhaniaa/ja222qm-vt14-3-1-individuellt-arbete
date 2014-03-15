@@ -12,6 +12,8 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
+    <%-- Lista på alla ansvarsområden --%>
+
     <asp:ListView ID="AreaListView" runat="server" 
         ItemType="Ja222qmApp.Model.Area" SelectMethod="AreaListView_GetData"
         DataKeyNames="AreaId">

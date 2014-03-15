@@ -12,6 +12,8 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
+    <%-- Ger användaren möjlighet att bekräfta att radera medlem eller att avbryta --%>
+
     <p>Är du helt säker på att du vill radera medlemmen
         <asp:Literal runat="server" ID="MemberName" ViewStateMode="Enabled"></asp:Literal>?</p>
 

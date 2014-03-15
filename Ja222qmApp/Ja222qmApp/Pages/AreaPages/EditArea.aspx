@@ -14,6 +14,8 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <asp:ValidationSummary runat="server" />
 
+    <%-- Textfält för att redigera befintligt ansvarsområde --%>
+
     <asp:FormView ID="AreaFormView" runat="server"
         ItemType="Ja222qmApp.Model.Area" 
         DataKeyNames="AreaId"

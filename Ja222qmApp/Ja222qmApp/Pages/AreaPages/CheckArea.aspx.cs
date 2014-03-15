@@ -11,13 +11,19 @@ namespace Ja222qmApp.Pages.AreaPages
 {
     public partial class CheckArea : System.Web.UI.Page
     {
+        private Service _service;
+
+        private Service Service
+        {
+            get { return _service ?? (_service = new Service()); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
+        // hämtar ut ansvarsområdet med hjälp av idt från route
         public Area AreaFormView_GetItem([RouteData]int id)
         {
             try
@@ -31,6 +37,12 @@ namespace Ja222qmApp.Pages.AreaPages
                 ModelState.AddModelError(String.Empty, "Ett fel inträffade då ansvarsområdet skulle hämtas");
                 return null;
             }
+        }
+
+        // hämtar ut de medlemmar som har det specifika ansvaret
+        public IEnumerable<Member> AreaMemberListView_GetData([RouteData]int id)
+        {
+            return Service.GetMembersByArea(id);
         }
     }
 }

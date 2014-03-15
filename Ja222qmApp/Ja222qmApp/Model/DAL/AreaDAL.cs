@@ -22,15 +22,16 @@ namespace Ja222qmApp.Model.DAL
             return new SqlConnection(_connectionString);
         }
 
+        // hämta ut specifikt ansvarsområde med hjälp av id
         public Area GetArea(int areaId)
         {
             using (SqlConnection conn = CreateConnection())
             {
                 try
                 {
+                    // lagrad procedur med parameter
                     SqlCommand cmd = new SqlCommand("appSchema.usp_GetArea", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@AreaId", SqlDbType.Int).Value = areaId;
 
                     conn.Open();
@@ -39,10 +40,11 @@ namespace Ja222qmApp.Model.DAL
                     {
                         if (reader.Read())
                         {
+                            // hämta index
                             int areaIdIndex = reader.GetOrdinal("AreaID");
-                            int nameIdIndex = reader.GetOrdinal("Area");
-                            
+                            int nameIdIndex = reader.GetOrdinal("Area");                            
 
+                            // returnera nytt Area objekt
                             return new Area
                             {
                                 AreaId = reader.GetInt32(areaIdIndex),
@@ -50,24 +52,26 @@ namespace Ja222qmApp.Model.DAL
                             };
                         }
                     }
-                    return null;
+
+                    // om området på det idt inte finns kastas ett undantag
+                    throw new ApplicationException("Ansvarsområdet existerar inte!");
                 }
                 catch (Exception)
                 {
-
                     throw new ApplicationException("Ett fel inträffade då medlemsinfon skulle hämtas från databasen");
                 }
             }
         }
 
+        // hämta ut alla ansvarsområden
         public IEnumerable<Area> GetAreas() 
         {
             using (var conn = CreateConnection())
             {
                 try
                 {
+                    // lista för områden och lagrad procedur
                     var areas = new List<Area>(1000);
-
                     var cmd = new SqlCommand("appSchema.usp_ShowAreas", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -75,10 +79,11 @@ namespace Ja222qmApp.Model.DAL
 
                     using (var reader = cmd.ExecuteReader())
                     {
+                        // hämta index
                         var areaIdIndex = reader.GetOrdinal("AreaID");
                         var areaNameIndex = reader.GetOrdinal("Area");
                         
-
+                        // för varje rad i databasen lägg till nytt Area objekt i listan
                         while (reader.Read())
                         {
                             areas.Add(new Area
@@ -89,8 +94,8 @@ namespace Ja222qmApp.Model.DAL
                         }
                     }
 
+                    // kapa överflöd och returnera listan
                     areas.TrimExcess();
-
                     return areas;
                 }
 
@@ -102,15 +107,16 @@ namespace Ja222qmApp.Model.DAL
         
         }
 
+        // lägg till nytt ansvarsområde
         public void InsertArea(Area area)
         {
             using (SqlConnection conn = CreateConnection())
             {
                 try
                 {
+                    // lagrad procedur med parametrar
                     SqlCommand cmd = new SqlCommand("appSchema.usp_AddArea", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@Area", SqlDbType.VarChar, 40).Value = area.AreaName;                    
                     cmd.Parameters.Add("@AreaID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
@@ -118,6 +124,7 @@ namespace Ja222qmApp.Model.DAL
 
                     cmd.ExecuteReader();
 
+                    // spara det nya områdes idt
                     area.AreaId = (int)cmd.Parameters["@AreaID"].Value;
 
                 }
@@ -128,23 +135,22 @@ namespace Ja222qmApp.Model.DAL
             }
         }
 
+        // uppdatera ansvarsområde
         public void UpdateArea(Area area)
         {
             using (SqlConnection conn = CreateConnection())
             {
                 try
                 {
+                    // lagrad procedur med parametrar
                     SqlCommand cmd = new SqlCommand("appSchema.usp_UpdateArea", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@AreaID", SqlDbType.Int, 4).Value = area.AreaId;
                     cmd.Parameters.Add("@Area", SqlDbType.VarChar, 40).Value = area.AreaName;                    
 
                     conn.Open();
 
                     cmd.ExecuteReader();
-
-
                 }
                 catch
                 {
@@ -153,15 +159,16 @@ namespace Ja222qmApp.Model.DAL
             }
         }
 
+        // radera ansvarsområde
         public void DeleteArea(int areaId)
         {
             using (SqlConnection conn = CreateConnection())
             {
                 try
                 {
+                    // lagrad procedur med parmeter
                     SqlCommand cmd = new SqlCommand("appSchema.usp_DeleteArea", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@AreaID", SqlDbType.Int, 4).Value = areaId;
 
                     conn.Open();
@@ -170,7 +177,6 @@ namespace Ja222qmApp.Model.DAL
                 }
                 catch (Exception)
                 {
-
                     throw new ApplicationException("Ett fel inträffade då ansvarsområdet skulle raderas från databasen");
                 }
             }

@@ -23,8 +23,7 @@ namespace Ja222qmApp.Pages
             get { return _service ?? (_service = new Service()); }
         }
 
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
+        // hämtar ut medlemsinfo
         public Member MemberFormView_GetItem([RouteData]int id)
         {
             try
@@ -38,26 +37,27 @@ namespace Ja222qmApp.Pages
             }
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // används då användaren valt att uppdatera medlemsinfo
         public void MemberFormView_UpdateItem(int memberId)
         {
-
             try
             {
+                // hämta medlems info
                 var member = Service.GetMember(memberId);
                 
                 if (member == null)
                 {
-                    // The member wasn't found
-                    ModelState.AddModelError("", String.Format("Item with id {0} was not found", memberId));
+                    ModelState.AddModelError("", String.Format("Medlemmen kunde inte hittas"));
                     return;
                 }
 
                 TryUpdateModel(member);
                 if (ModelState.IsValid)
                 {
+                    // då valideringen är ok sparas medlemmen
                     Service.SaveMember(member);
 
+                    // och användaren skickas vidare till den medlemmens detalj sida
                     Response.RedirectToRoute("MemberDetails", new { id = member.MemberId });
                     Context.ApplicationInstance.CompleteRequest();
                 }

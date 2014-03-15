@@ -23,8 +23,7 @@ namespace Ja222qmApp.Pages.AreaPages
             get { return _service ?? (_service = new Service()); }
         }
 
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
+        // hämtar ut det specifika ansvarområdet
         public Area AreaFormView_GetItem([RouteData]int id)
         {
             try
@@ -38,7 +37,7 @@ namespace Ja222qmApp.Pages.AreaPages
             }
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // används då användaren valt att uppdatera ansvarsområdet
         public void AreaFormView_UpdateItem(int areaId)
         {
             try
@@ -47,7 +46,7 @@ namespace Ja222qmApp.Pages.AreaPages
 
                 if (area == null)
                 {
-                    // The area wasn't found
+                    // om ansvarsområdet inte existerar
                     ModelState.AddModelError("", String.Format("Item with id {0} was not found", areaId));
                     return;
                 }
@@ -55,15 +54,16 @@ namespace Ja222qmApp.Pages.AreaPages
                 TryUpdateModel(area);
                 if (ModelState.IsValid)
                 {
+                    // då valideringen gått igenom sparas ändringarna
                     Service.SaveArea(area);
 
+                    // och användaren skickas till ansvars-detalj-sidan
                     Response.RedirectToRoute("AreaDetails", new { id = area.AreaId });
                     Context.ApplicationInstance.CompleteRequest();
                 }
             }
             catch (Exception)
             {
-
                 ModelState.AddModelError("", String.Format("Ett fel inträffade då ansvarsområdet skulle uppdateras"));
             }
         }

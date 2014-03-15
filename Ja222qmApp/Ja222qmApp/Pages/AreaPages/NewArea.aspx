@@ -14,6 +14,8 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <asp:ValidationSummary runat="server" />
 
+    <%-- Textbox samt knappar för att lägga till nytt ansvarsområde --%>
+
     <asp:FormView ID="AreaFormView" runat="server"
         ItemType="Ja222qmApp.Model.Area"
         DefaultMode="Insert" 

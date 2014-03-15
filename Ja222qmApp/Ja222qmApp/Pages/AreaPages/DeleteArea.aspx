@@ -12,6 +12,8 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
+    <%-- Ger användaren möjlighet att bekräfta att denne verkligen vill radera ansvarsområdet eller avbryta --%>
+
     <p>Är du helt säker på att du vill radera ansvarsområdet
         <asp:Literal runat="server" ID="AreaName" ViewStateMode="Enabled"></asp:Literal>?</p>
     <asp:LinkButton ID="DeleteAreaButton" runat="server" Text="Ja, radera ansvarsområdet" 

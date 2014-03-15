@@ -12,6 +12,8 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
+    <%-- Listar upp alla medlemmar i databasen med länk till varje medlems detalj sida --%>
+
     <asp:ListView ID="MemberListView" runat="server" 
         ItemType="Ja222qmApp.Model.Member" 
         SelectMethod="ListView1_GetData" 
