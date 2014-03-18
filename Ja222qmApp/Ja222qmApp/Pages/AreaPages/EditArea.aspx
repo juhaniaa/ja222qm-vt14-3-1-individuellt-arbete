@@ -28,7 +28,8 @@
                 <label for="Name">Namn</label>
             </div>
             <div>
-                <asp:TextBox ID="Name" runat="server" Text='<%# BindItem.AreaName %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Namn måste anges" Text="*" ControlToValidate="Name"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="Name" runat="server" Text='<%# BindItem.AreaName %>' MaxLength="15" />
             </div>                     
 
             <div>

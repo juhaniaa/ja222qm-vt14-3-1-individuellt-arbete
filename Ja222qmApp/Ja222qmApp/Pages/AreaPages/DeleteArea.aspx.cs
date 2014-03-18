@@ -55,6 +55,7 @@ namespace Ja222qmApp.Pages.AreaPages
             {
                 var id = int.Parse(e.CommandArgument.ToString());
                 Service.DeleteArea(id);
+                Session["Sucess"] = "Ansvarsområdet har raderats";
 
                 // returnerar användaren till sidan med ansvarsområden
                 Response.RedirectToRoute("Areas", null);

@@ -23,10 +23,11 @@
         InsertMethod="AreaFormView_InsertItem">
         <InsertItemTemplate>
             <div>
-                <label for="Name">Namn</label>
+                <label for="Name">Nytt ansvar</label>
             </div>
             <div>
-                <asp:TextBox ID="Name" runat="server" Text='<%# BindItem.AreaName%>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Namn måste anges" ControlToValidate="Name" Text="*"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="Name" runat="server" Text='<%# BindItem.AreaName%>' MaxLength="15" />
             </div>            
 
             <div>

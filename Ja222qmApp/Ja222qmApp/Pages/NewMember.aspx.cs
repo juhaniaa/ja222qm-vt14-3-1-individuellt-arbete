@@ -26,6 +26,7 @@ namespace Ja222qmApp.Pages
                     // och användaren skickas till sidan med lista på alla medlemmar
                     Service service = new Service();
                     service.SaveMember(member);
+                    Session["Sucess"] = "Medlemmen har sparats";
                     Response.RedirectToRoute("Members", null);
                     Context.ApplicationInstance.CompleteRequest();
                 }

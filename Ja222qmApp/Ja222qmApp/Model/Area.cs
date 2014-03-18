@@ -11,7 +11,7 @@ namespace Ja222qmApp.Model
         public int AreaId { get; set; }
 
         [Required(ErrorMessage = "Ansvarsområdets namn måste anges")]
-        [StringLength(40, ErrorMessage = "Ansvarsområdet får ha max 15 tecken.")]
+        [StringLength(15, ErrorMessage = "Ansvarsområdet får ha max 15 tecken.")]
         public string AreaName { get; set; }
     }
 }

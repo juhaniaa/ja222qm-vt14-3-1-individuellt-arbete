@@ -24,6 +24,7 @@ namespace Ja222qmApp.Pages.AreaPages
                     // då validering är ok sparas det nya ansvarsområdet
                     Service service = new Service();
                     service.SaveArea(area);
+                    Session["Sucess"] = "Ansvarsområdet har lagts till";
 
                     // och användaren skickas tillbaka till listan med ansvarsområden
                     Response.RedirectToRoute("Areas", null);

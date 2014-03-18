@@ -11,7 +11,11 @@
     </section>
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    
+
+    <%-- Meddelande för lyckad operation --%>
+    <asp:PlaceHolder runat="server" ID="MessagePlaceholder" Visible="false">
+        <asp:Literal runat="server" ID="MessageLiteral"></asp:Literal>
+    </asp:PlaceHolder>
     <%-- Listar upp alla medlemmar i databasen med länk till varje medlems detalj sida --%>
 
     <asp:ListView ID="MemberListView" runat="server" 

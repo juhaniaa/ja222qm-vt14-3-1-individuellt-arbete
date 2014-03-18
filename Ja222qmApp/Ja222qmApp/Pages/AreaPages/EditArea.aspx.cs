@@ -56,6 +56,7 @@ namespace Ja222qmApp.Pages.AreaPages
                 {
                     // då valideringen gått igenom sparas ändringarna
                     Service.SaveArea(area);
+                    Session["Sucess"] = "Ansvarsområdet har uppdaterats";
 
                     // och användaren skickas till ansvars-detalj-sidan
                     Response.RedirectToRoute("AreaDetails", new { id = area.AreaId });

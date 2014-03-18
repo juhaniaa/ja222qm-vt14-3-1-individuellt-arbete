@@ -14,6 +14,11 @@
     
     <asp:ValidationSummary runat="server" />
 
+    <%-- Meddelande för lyckad operation --%>
+    <asp:PlaceHolder runat="server" ID="MessagePlaceholder" Visible="false">
+        <asp:Literal runat="server" ID="MessageLiteral"></asp:Literal>
+    </asp:PlaceHolder>
+
     <%-- Visar den specifika medlemmens info --%>
 
     <asp:FormView ID="MemberFormView" runat="server" ItemType="Ja222qmApp.Model.Member"

@@ -16,7 +16,17 @@ namespace Ja222qmApp.Pages
         private Service Service
         {
             get { return _service ?? (_service = new Service()); }
-        }        
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["Sucess"] != null)
+            {
+                MessagePlaceholder.Visible = true;
+                MessageLiteral.Text = Session["Sucess"].ToString();
+                Session.Remove("Sucess");
+            }
+        }
     
         public Member MemberFormView_GetItem([RouteData]int id)
         {

@@ -19,7 +19,12 @@ namespace Ja222qmApp.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Sucess"] != null)
+            {                
+                MessagePlaceholder.Visible = true;
+                MessageLiteral.Text = Session["Sucess"].ToString();
+                Session.Remove("Sucess");
+            }
         }
 
         // hämta info för alla medlemmar

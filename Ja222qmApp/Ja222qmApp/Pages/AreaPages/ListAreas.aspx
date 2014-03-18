@@ -12,6 +12,11 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
+    <%-- Meddelande för lyckad operation --%>
+    <asp:PlaceHolder runat="server" ID="MessagePlaceholder" Visible="false">
+        <asp:Literal runat="server" ID="MessageLiteral"></asp:Literal>
+    </asp:PlaceHolder>
+
     <%-- Lista på alla ansvarsområden --%>
 
     <asp:ListView ID="AreaListView" runat="server" 

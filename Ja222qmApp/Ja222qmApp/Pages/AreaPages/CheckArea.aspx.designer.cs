@@ -13,6 +13,24 @@ namespace Ja222qmApp.Pages.AreaPages {
     public partial class CheckArea {
         
         /// <summary>
+        /// MessagePlaceholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder MessagePlaceholder;
+        
+        /// <summary>
+        /// MessageLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal MessageLiteral;
+        
+        /// <summary>
         /// AreaFormView control.
         /// </summary>
         /// <remarks>

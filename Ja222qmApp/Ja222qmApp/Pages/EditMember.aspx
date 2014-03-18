@@ -27,28 +27,32 @@
                 <label for="Name">Namn</label>
             </div>
             <div>
-                <asp:TextBox ID="Name" runat="server" Text='<%# BindItem.Name %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Namn måste anges" Text="*" ControlToValidate="Name"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="Name" runat="server" Text='<%# BindItem.Name %>' MaxLength="40" />
             </div>
 
             <div>
                 <label for="Address">Adress</label>
             </div>
             <div>
-                <asp:TextBox ID="Address" runat="server" Text='<%# BindItem.Address %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Adress måste anges" Text="*" ControlToValidate="Address"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="Address" runat="server" Text='<%# BindItem.Address %>' MaxLength="30" />
             </div>
 
             <div>
                 <label for="PostalCode">Postnummer</label>
             </div>
             <div>
-                <asp:TextBox ID="PostalCode" runat="server" Text='<%# BindItem.Postnr %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Postnummer måste anges" ControlToValidate="PostalCode" Text="*"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="PostalCode" runat="server" Text='<%# BindItem.Postnr %>' MaxLength="5" />
             </div>
 
             <div>
                 <label for="City">Ort</label>
             </div>
             <div>
-                <asp:TextBox ID="City" runat="server" Text='<%# BindItem.City %>' />
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Ort måste anges" ControlToValidate="City" Text="*"></asp:RequiredFieldValidator>
+                <asp:TextBox ID="City" runat="server" Text='<%# BindItem.City %>' MaxLength="25" />
             </div>
 
             <div>

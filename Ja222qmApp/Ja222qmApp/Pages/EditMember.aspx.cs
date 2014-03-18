@@ -54,8 +54,9 @@ namespace Ja222qmApp.Pages
                 TryUpdateModel(member);
                 if (ModelState.IsValid)
                 {
-                    // då valideringen är ok sparas medlemmen
+                    // då valideringen är ok sparas medlemmen och meddelande om lyckad operation
                     Service.SaveMember(member);
+                    Session["Sucess"] = "Medlemmen har uppdaterats";
 
                     // och användaren skickas vidare till den medlemmens detalj sida
                     Response.RedirectToRoute("MemberDetails", new { id = member.MemberId });

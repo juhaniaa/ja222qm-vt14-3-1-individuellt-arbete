@@ -12,6 +12,11 @@
 </asp:Content>
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     
+    <%-- Meddelande för lyckad operation --%>
+    <asp:PlaceHolder runat="server" ID="MessagePlaceholder" Visible="false">
+        <asp:Literal runat="server" ID="MessageLiteral"></asp:Literal>
+    </asp:PlaceHolder>
+
     <%-- Skriver ut det specifika ansvarsområdet och ger möjlighet att redigera och ta bort det --%>
 
     <asp:ValidationSummary runat="server" />

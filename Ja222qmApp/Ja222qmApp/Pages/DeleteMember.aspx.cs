@@ -53,9 +53,10 @@ namespace Ja222qmApp.Pages
         {
             try
             {
-                // radera kund och
+                // radera kund, spara meddelande och
                 var id = int.Parse(e.CommandArgument.ToString());
                 Service.DeleteMember(id);
+                Session["Sucess"] = "Medlemmen har raderats";
 
                 // ...skicka kunden tillbaka till listan med medlemmar
                 Response.RedirectToRoute("Members", null);
