@@ -41,7 +41,7 @@
                 <label for="PostalCode">Postnummer</label>
             </div>
             <div>
-<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Postnummer måste anges" ControlToValidate="PostalCode" Text="*"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Postnummer måste anges" ControlToValidate="PostalCode" Text="*"></asp:RequiredFieldValidator>
                 <asp:TextBox ID="PostalCode" runat="server" Text='<%# BindItem.Postnr %>' MaxLength="5" />
             </div>
 

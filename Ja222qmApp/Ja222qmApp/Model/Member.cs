@@ -19,11 +19,13 @@ namespace Ja222qmApp.Model
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Postnummer måste anges")]
-        [StringLength(5, ErrorMessage = "Postnumret får ha max 5 tecken.")]
+        [RegularExpression(@"^\d{5}$", ErrorMessage = "Postnummer måste vara exakt 5 siffror")]
         public string Postnr { get; set; }
 
         [Required(ErrorMessage = "Ort måste anges")]
         [StringLength(25, ErrorMessage = "Ort får ha max 25 tecken.")]
         public string City { get; set; }
+
+        
     }
 }

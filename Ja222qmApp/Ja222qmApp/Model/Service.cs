@@ -1,6 +1,7 @@
 ﻿using Ja222qmApp.Model.DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -29,6 +30,34 @@ namespace Ja222qmApp.Model
             get { return _helperDAL ?? (_helperDAL = new HelperDAL()); }
         }
 
+        #region Validation
+
+        // metod för att validera ett medlemsobjekt
+        private bool ValidateMember(Member member) 
+        {
+            var validationContext = new ValidationContext(member);
+            var validationResults = new List<ValidationResult>();
+            if (!Validator.TryValidateObject(member, validationContext, validationResults, true))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        // metod för att validera ett ansvarsobjekt
+        private bool ValidateArea(Area area)
+        {
+            var validationContext = new ValidationContext(area);
+            var validationResults = new List<ValidationResult>();
+            if (!Validator.TryValidateObject(area, validationContext, validationResults, true))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
+
         #region MemberDAL
 
         // hämta ut specifik medlem
@@ -44,6 +73,11 @@ namespace Ja222qmApp.Model
 
         // spara medlem
         public void SaveMember(Member member) {
+
+            if(!ValidateMember(member))
+            {
+                throw new ValidationException("Medlemmen klarade inte valideringen");
+            }
 
             // om ny medlem
             if (member.MemberId == 0)
@@ -83,6 +117,11 @@ namespace Ja222qmApp.Model
         // spara ansvarsområde
         public void SaveArea(Area area)
         {
+            if (!ValidateArea(area))
+            {
+                throw new ValidationException("Ansvarsområdet klarade inte valideringen");
+            }
+
             // om nytt
             if (area.AreaId == 0)
             {   

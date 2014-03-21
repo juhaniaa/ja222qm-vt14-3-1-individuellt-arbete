@@ -41,8 +41,8 @@ namespace Ja222qmApp.Pages
                 }
                 catch (Exception)
                 {
-                    
-                    throw;
+
+                    ModelState.AddModelError(String.Empty, "Ett fel inträffade då medlemmen skulle hämtas");
                 }
             }
 
